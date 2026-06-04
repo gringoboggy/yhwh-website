@@ -1,0 +1,282 @@
+/* YHWH — manuscript-reverent.
+   Palette contrast-verified for WCAG 2.2 AA: gold is used only on hairlines /
+   marks / large text, never as body text.
+   Fonts are self-hosted (SIL OFL 1.1) — see fonts/README.md + the OFL texts in fonts/. */
+
+/* ---- self-hosted fonts (SIL Open Font License 1.1, no third-party CDN) ---- */
+@font-face {
+  font-family: "EB Garamond"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/eb-garamond-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "EB Garamond"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("fonts/eb-garamond-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "EB Garamond"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("fonts/eb-garamond-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "EB Garamond"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("fonts/eb-garamond-latin-700-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Noto Serif Ethiopic"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/noto-serif-ethiopic-ethiopic-400-normal.woff2") format("woff2");
+  unicode-range: U+1200-137F, U+1380-139F, U+2D80-2DDF, U+AB00-AB2F;
+}
+
+:root {
+  --vellum: #F4ECD8;        /* page ground */
+  --parchment: #FBF6E9;     /* card ground */
+  --ink: #2B2118;           /* body text — ~12:1 on vellum */
+  --sepia: #574532;         /* secondary text */
+  --gold: #B8860B;          /* accent rule / large marks only */
+  --gold-line: #9A6E12;     /* hairlines */
+  --red: #7A1F2B;           /* primary action */
+  --red-dark: #5E1722;
+  --indigo: #243B6B;        /* links / heading accent */
+  --antique: #FCF8EF;       /* text on dark */
+  --charcoal: #221C15;      /* footer ground */
+  --gold-foot: #C9B27A;     /* footer link gold — ~7:1 on charcoal (AA) */
+  --maxw: 1100px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--vellum);
+  color: var(--ink);
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+:lang(gez), :lang(am) { font-family: "Noto Serif Ethiopic", "Kefa", serif; font-size: 1.12em; line-height: 1.7; }
+
+a { color: var(--indigo); }
+:focus-visible { outline: 3px solid var(--indigo); outline-offset: 2px; border-radius: 2px; }
+
+.skip { position: absolute; left: -999px; top: 0; background: var(--red); color: var(--antique); padding: .6rem 1rem; z-index: 10; }
+.skip:focus { left: .5rem; top: .5rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* header */
+.site-head {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+  max-width: var(--maxw); margin: 0 auto; padding: 1rem 1.25rem;
+  border-bottom: 2px double var(--gold-line);
+}
+.wordmark { font-size: 1.4rem; letter-spacing: .12em; font-weight: 600; }
+.wordmark .cross { color: var(--gold); }
+.wordmark .grace { color: var(--sepia); font-size: .9em; }
+/* (language selector removed — the section nav is used instead) */
+
+/* hero */
+.hero { text-align: center; max-width: 760px; margin: 0 auto; padding: 3.5rem 1.25rem 2.5rem; }
+.cross-lg { font-size: 3rem; color: var(--gold); margin: 0 0 .5rem; }
+.hero h1 { font-size: clamp(3rem, 12vw, 6rem); letter-spacing: .22em; margin: 0; color: var(--ink); }
+.tagline { font-size: 1.4rem; color: var(--red); margin: .25rem 0 1rem; }
+.mission { color: var(--sepia); margin: 0 auto 1.75rem; max-width: 34rem; }
+.btn-ghost {
+  display: inline-block; text-decoration: none; color: var(--indigo);
+  border: 1px solid var(--gold-line); border-radius: 4px; padding: .7rem 1.4rem; font-size: 1.05rem;
+}
+.btn-ghost:hover { background: var(--parchment); }
+
+/* sections */
+.band { max-width: var(--maxw); margin: 0 auto; padding: 1.75rem 1.25rem; }
+.band-alt { background: var(--parchment); max-width: none; border-block: 2px double var(--gold-line); }
+.band-alt > * { max-width: var(--maxw); margin-inline: auto; }
+.rule { font-size: 1.6rem; color: var(--ink); margin: 0 0 1rem; padding-bottom: .5rem; border-bottom: 2px double var(--gold-line); }
+.helper { color: var(--sepia); margin: -.4rem 0 1.25rem; }
+.prose { max-width: 46rem; }
+
+/* grid + cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.card {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--parchment); border: 1px solid var(--gold-line);
+  border-top: 4px solid var(--red); border-radius: 3px; overflow: hidden;
+  box-shadow: 0 1px 3px rgba(34,28,21,.12);
+}
+.card-featured { flex-direction: row; flex-wrap: wrap; align-items: stretch; }
+.card-featured .cover { width: 200px; height: auto; }
+.card-featured .card-body { flex: 1 1 320px; }
+.cover { width: 100%; height: auto; display: block; aspect-ratio: 2 / 3; object-fit: cover; background: var(--vellum); }
+.cover-placeholder {
+  display: grid; place-items: center; text-align: center; aspect-ratio: 2 / 3;
+  background: var(--red); color: var(--antique); font-size: 1.5rem; line-height: 1.5;
+  border-bottom: 3px solid var(--gold);
+}
+.card-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .5rem; }
+.card h3 { margin: 0; font-size: 1.25rem; color: var(--ink); line-height: 1.25; }
+.card h3 .sub { color: var(--sepia); font-size: .85em; }
+.blurb { margin: 0; color: var(--ink); }
+.meta { margin: 0; color: var(--sepia); font-size: .95rem; font-style: italic; }
+.download {
+  margin-top: auto; align-self: flex-start; display: inline-block;
+  background: var(--red); color: var(--antique); text-decoration: none;
+  padding: .7rem 1.15rem; border-radius: 4px; font-size: 1rem; min-height: 44px;
+}
+.download:hover { background: var(--red-dark); }
+.download .size { opacity: .85; font-size: .9em; }
+/* whole-card clickable, accessible name stays on the link */
+.download::after { content: ""; position: absolute; inset: 0; }
+
+/* how-to + lists */
+.howto { padding-left: 1.2rem; max-width: 46rem; }
+.howto li { margin: .35rem 0; }
+
+/* footer */
+.site-foot { background: var(--charcoal); color: var(--antique); text-align: center; padding: 2rem 1.25rem; margin-top: 2rem; }
+.site-foot .cross { color: var(--gold); }
+.site-foot a { color: var(--gold-foot); }
+.site-foot .src { color: #B7AC97; font-size: .95rem; }
+
+@media (max-width: 560px) {
+  .card-featured { flex-direction: column; }
+  .card-featured .cover { width: 100%; }
+  .site-head { justify-content: center; text-align: center; }
+}
+
+/* ============================================================
+   Program-homepage additions (manuscript-reverent, WCAG 2.2 AA)
+   ============================================================ */
+
+/* header: wordmark is a link now; section nav replaces the lang nav */
+.wordmark { text-decoration: none; color: var(--ink); }
+.wordmark:hover .yhwh { color: var(--red); }
+.site-nav { display: flex; flex-wrap: wrap; gap: .25rem 1.1rem; justify-content: flex-end; }
+.site-nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--sepia); font-size: 1rem; padding: .2rem 0; border-bottom: 2px solid transparent; }
+.site-nav a:hover { color: var(--ink); border-bottom-color: var(--gold); }
+
+/* hero extras */
+.hero h1 .yaway { display: block; font-size: clamp(1.4rem, 5vw, 2.2rem); letter-spacing: .14em; color: var(--red); margin-top: .35rem; }
+.creed { font-style: italic; max-width: 38rem; }
+.creed em { font-style: normal; color: var(--red); }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; margin: 0 0 1rem; }
+.btn-primary {
+  display: inline-block; text-decoration: none; background: var(--red); color: var(--antique);
+  border: 1px solid var(--red-dark); border-radius: 4px; padding: .8rem 1.6rem; font-size: 1.1rem; min-height: 44px;
+}
+.btn-primary:hover { background: var(--red-dark); }
+.fineprint { color: var(--sepia); font-size: .95rem; margin: .25rem 0 0; }
+
+/* stats band */
+.stats { padding-block: 1.5rem; }
+.stat-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.25rem; text-align: center;
+}
+.stat { display: flex; flex-direction: column; gap: .15rem; }
+.stat-num { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 600; color: var(--red); line-height: 1.05; }
+.stat-label { color: var(--sepia); font-size: .95rem; }
+
+/* feature grid */
+.feature-grid { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; }
+.feature { background: var(--parchment); border: 1px solid var(--gold-line); border-left: 4px solid var(--gold); border-radius: 3px; padding: 1rem 1.1rem; }
+.feature h3 { margin: 0 0 .4rem; font-size: 1.15rem; color: var(--indigo); line-height: 1.25; }
+.feature p { margin: 0; color: var(--ink); font-size: 1rem; line-height: 1.55; }
+
+/* customization list + honest callout */
+.custom-list { list-style: none; margin: .5rem 0 1.25rem; padding: 0; max-width: 46rem; display: grid; gap: .7rem; }
+.custom-list li { border-left: 3px solid var(--gold-line); padding-left: .9rem; }
+.callout { max-width: 46rem; background: var(--parchment); border: 1px solid var(--gold-line); border-left: 4px solid var(--red); border-radius: 3px; padding: 1rem 1.15rem; color: var(--ink); }
+
+/* sub-headings inside a section */
+.sub-h { font-size: 1.2rem; color: var(--red); margin: 1.25rem 0 .35rem; }
+
+/* ordered build steps */
+.steps { max-width: 46rem; margin: .5rem 0 1.25rem; padding-left: 1.4rem; }
+.steps li { margin: .4rem 0; padding-left: .25rem; }
+.steps li::marker { color: var(--gold-line); font-weight: 700; }
+
+/* provenance groups */
+.source-group { max-width: 48rem; padding: 1rem 0; border-top: 1px solid var(--gold-line); }
+.source-group:first-of-type { border-top: none; padding-top: .5rem; }
+.source-group h3 { margin: 0 0 .35rem; font-size: 1.2rem; color: var(--indigo); }
+.source-group p { margin: 0; color: var(--ink); }
+.footnote { color: var(--sepia); font-size: .95rem; font-style: italic; }
+
+/* editions gallery — showcase cards, no downloads */
+.gallery { margin-top: 1.25rem; }
+.card-static { cursor: default; }
+
+/* platform + donation button rows */
+.platforms, .give { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.25rem 0 .5rem; }
+.btn-platform, .btn-give {
+  display: inline-flex; align-items: center; min-height: 44px;
+  text-decoration: none; background: var(--red); color: var(--antique);
+  border: 1px solid var(--red-dark); border-radius: 4px; padding: .7rem 1.25rem; font-size: 1.05rem;
+}
+.btn-platform:hover, .btn-give:hover { background: var(--red-dark); }
+.btn-give { background: var(--indigo); border-color: #182a4d; }
+.btn-give:hover { background: #182a4d; }
+/* pre-launch placeholder buttons (rendered as non-interactive spans until real URLs land) */
+.btn-platform.is-pending, .btn-give.is-pending { opacity: .62; cursor: not-allowed; }
+.btn-platform.is-pending:hover { background: var(--red); }
+.btn-give.is-pending:hover { background: var(--indigo); }
+.platform-note { color: var(--sepia); font-size: .95rem; margin: .35rem 0 0; max-width: 46rem; }
+.platform-note a { color: var(--indigo); }
+
+@media (max-width: 560px) {
+  .site-nav { justify-content: center; }
+  .actions, .platforms, .give { justify-content: center; }
+}
+
+/* ============================================================
+   v2 additions — multi-page shell: roadmap · beta · releases · feedback,
+   the footer "Connect" row + header "Code" link. Manuscript-reverent, WCAG 2.2 AA.
+   ============================================================ */
+
+/* active nav link cue (non-color: a permanent gold underline + ink text) */
+.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--gold-line); }
+
+/* header "Code" link */
+.nav-code { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; color: var(--indigo); }
+.nav-code svg { width: 1.1em; height: 1.1em; fill: currentColor; }
+
+/* ── roadmap timeline ── */
+.roadmap-timeline { list-style: none; margin: 1rem 0 0; padding: 0 0 0 1.6rem; border-left: 2px solid var(--gold-line); display: grid; gap: 1.5rem; }
+.stage { position: relative; }
+.stage::before { content: ""; position: absolute; left: -1.95rem; top: .4rem; width: .7rem; height: .7rem; border-radius: 50%; background: var(--gold-line); box-shadow: 0 0 0 3px var(--parchment); }
+.stage.is-active::before { background: var(--red); }
+.stage h3 { margin: .35rem 0 .4rem; font-size: 1.3rem; color: var(--ink); line-height: 1.25; }
+.stage p { margin: 0; max-width: 46rem; color: var(--ink); }
+.stage-badge { display: inline-block; font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: .15rem .55rem; border-radius: 3px; }
+.is-shipped .stage-badge { color: var(--sepia); background: var(--vellum); border: 1px solid var(--gold-line); }
+.is-active .stage-badge { color: var(--antique); background: var(--red); border: 1px solid var(--red-dark); }
+
+/* fenced "with support, next" future group */
+.future-group .custom-list li { border-left-color: var(--gold-line); }
+
+/* ── beta page ── */
+.beta-hero { padding-top: 2.5rem; }
+.beta-medallion { display: block; margin: 0 auto 1rem; width: 160px; height: 160px; }
+.beta-ribbon { margin: .6rem 0 0; }
+.beta-ribbon a { color: var(--indigo); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--gold-line); }
+.beta-ribbon strong { color: var(--red); }
+
+/* checksum / verify-command monospace */
+code { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: .92em; }
+.verify-cmd { display: inline-block; background: var(--parchment); border: 1px solid var(--gold-line); border-radius: 3px; padding: .1rem .4rem; overflow-wrap: anywhere; }
+
+/* releases — latest card + beta badge */
+.latest-release { max-width: 46rem; border-top-color: var(--indigo); }
+.badge-beta { display: inline-block; margin: 0 0 .4rem; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--indigo); border: 1px solid var(--gold-line); border-radius: 3px; padding: .12rem .5rem; }
+
+/* ── footer: creed + connect row + give ── */
+.foot-creed { margin: 0 0 .9rem; }
+.foot-connect { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem 1rem; margin: 0 0 .9rem; }
+.foot-connect a { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; padding: .3rem .55rem; color: var(--gold-foot); text-decoration: none; }
+.foot-connect a:hover { color: var(--antique); }
+.foot-connect svg { width: 1.2em; height: 1.2em; fill: currentColor; }
+.foot-give { margin: 0 0 .6rem; color: #B7AC97; font-size: .98rem; }
+
+/* feedback / giscus container */
+.giscus { max-width: 46rem; margin-top: 1.5rem; min-height: 12rem; }
+
+@media (max-width: 560px) {
+  .foot-connect { gap: .1rem .6rem; }
+}
